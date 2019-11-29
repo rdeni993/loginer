@@ -23,6 +23,9 @@ include "inc/conf.inc.php";
 // Create Loginer Object
 $loginer = new Loginer($_db, $_conf);
 
+// Check for configuration errors
+$loginer->configure();
+
 // If table is created already
 // app will redirect user to 
 // Login HTML
@@ -33,15 +36,40 @@ if( $loginer->table_exists() )
 }
 else 
 {
-    if($loginer->create_table())
+    echo "<pre>";
+    echo "Run Application.... OK\n";
+    echo "Check For errors....\n";
+
+    if( $loginer->configuration_errors() )
     {
-       if( $loginer->create_unique() )
-       {
-           echo "Tabela je kreirana.. Dodan je kljuc";
-       }
+        echo "Error occured!\n";
+        $temp_err = $loginer->configuration_errors();
+
+        echo  "<b>". sizeof($temp_err) . " error(s) occured..\n</b>";
+
+        foreach( $temp_err as $err )
+        {
+            echo $err . "\n";
+        }
+
+        echo "\n";
     }
     else 
     {
-        echo "Tabela nije kreirana";
+        if($loginer->create_table())
+        {
+            if( $loginer->create_unique() )
+            {
+                echo "Table is created.....\n";
+                echo "Unique key is added...\n";
+                echo "Forms are created....\n";
+            }
+        }
+        else 
+        {
+            echo "Table is not created!..\n";
+            echo "Unknown error is occured..\n";
+        }
     }
+
 }

@@ -10,7 +10,7 @@
 $_conf = array();
 
 // Table Name
-$_conf['db_table_name'] = "loginer";
+$_conf['db_table_name'] = "";
 
 // Database Table Data
 // Set Up this table data
@@ -19,17 +19,11 @@ $_conf['db_table_name'] = "loginer";
 //
 //  key [ type, length ]
 //
-$_conf['db_table_data'] = [
-
-    "user_name"     => [ "varchar", 255 ],
-    "user_email"    => [ "varchar", 255 ],
-    "user_password" => [ "varchar", 255 ]
-
-];
+$_conf['db_table_data'] = [];
 
 // One of your field must me 
 // unique ( username, nickname, email, .... )
-$_conf['db_table_unique'] = "user_email";
+$_conf['db_table_unique'] = "";
 
 // Choose which data to hash
 // This data will be stored as
@@ -37,7 +31,6 @@ $_conf['db_table_unique'] = "user_email";
 // Add only data u need to 
 // be crypted...
 $_conf['db_table_sens'] = [
-    "user_password"
 ];
 
 // ALLOW EMPTY FIELDS
@@ -72,11 +65,10 @@ $_conf['password_salt'] = "vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a"
 // NOTICE: Fields must be same as fields inside
 // above array..... 
 $_conf['login_fields'] = [
-    "user_email",
-    "user_password"
+
 ];
 
 // REDIRECT PAGE
 // After we finish loading select page where 
 // we need to landing...
-$_conf['login_land_page'] = 'website.php';
+$_conf['login_land_page'] = '';

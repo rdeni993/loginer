@@ -29,6 +29,9 @@ class Loginer
     /** Pulic Signup Error */
     public $_signup_error = false;
 
+    /** Configuration Errors */
+    public $_conf_errors = [];
+
     #####################
 
     /** Construct App  */
@@ -62,6 +65,76 @@ class Loginer
 
         // Return Result Of Searching For Tables
         return $this->_db_instance->query($q)->num_rows;
+    }
+
+    /** Check for security */
+    public function configure()
+    {
+
+        // Check did table name is created..
+        if( !isset($this->_config['db_table_name']) || $this->_config['db_table_name'] == "" )
+        {
+            $str_err_temp = "You must enter table name!";
+            array_push($this->_conf_errors, $str_err_temp);
+        }
+
+        // First check is array filled..
+        // Array must have at least 2 fields... 
+        if( sizeof($this->_config['db_table_data']) < 2 )
+        {
+            $str_err_temp = "You must have at least 2 fields in your database...";
+            array_push($this->_conf_errors, $str_err_temp);
+        } 
+
+        // Now Check for Unique
+        if( !array_key_exists( $this->_config['db_table_unique'], $this->_config['db_table_data'] ) )
+        {
+            $str_err_temp = "Unique key is not part of your application!";
+            array_push($this->_conf_errors, $str_err_temp);
+        }
+
+        // Check for sens data 
+        foreach( $this->_config['db_table_sens'] as $k )
+        {
+            if( !array_key_exists( $k, $this->_config['db_table_data'] ) )
+            {
+                $str_err_temp = "Sensitive key " . $k . " is not part of your application!";
+                array_push($this->_conf_errors, $str_err_temp);
+            }
+        }
+
+        // Check for sens data 
+        foreach( $this->_config['login_fields'] as $k )
+        {
+            if( !array_key_exists( $k, $this->_config['db_table_data'] ) )
+            {
+                $str_err_temp = "Login Field " . $k . " is not part of your application!";
+                array_push($this->_conf_errors, $str_err_temp);
+            }
+        }
+
+        // Check did user setup login fields
+        if( empty($this->_config['login_fields']) )
+        {
+            $str_err_temp = "Login Form is not set. Plase add Login Fields in configuration file..";
+            array_push($this->_conf_errors, $str_err_temp);
+        }
+
+        // Check did user setup lading page
+        if( empty($this->_config['login_land_page']) )
+        {
+            $str_err_temp = "YOU MUST ENTER LANDING PAGE.";
+            array_push($this->_conf_errors, $str_err_temp);
+        }
+
+        
+        // Check did user setup lading page
+        if( empty($this->_config['password_algorithm']) )
+        {
+            $str_err_temp = "PASSWORD HASH ALGORITHM IS NOT SETUP";
+            array_push($this->_conf_errors, $str_err_temp);
+        }
+
     }
 
     /** Create Table  */
@@ -580,5 +653,14 @@ class Loginer
         return ( @$_SESSION['loginer_token'] ) ? true : false;
     }
 
+    /**
+     * 
+     * Configuration errors
+     * 
+     */
+    public function configuration_errors()
+    {
+        return $this->_conf_errors;
+    }
 
 }
