@@ -1,0 +1,146 @@
+============================
+============================
+
+Loginer
+
+============================
+============================
+
+** Main purpose of this script is to help new ( read beginners ) PHP programmers
+   to create login process in their own applications.
+
+** Loginer Class take control on whole process include creating forms for 
+   signup and login..
+
+** All you need to do is to config you configuration script located inside 
+   inc/ folder...
+
+** Before you start application please follow this instructions... 
+
+DATABASE
+========
+
+** First part of configuration application is to setup database.
+   Setup is located inside file:
+
+   inc/db_mysql.inc.php 
+
+** Add fields you know:
+
+    - host,
+    - username,
+    - password,
+    - database_name => This must be name for already created database..
+
+APPLICATION
+============
+
+** After you finish database setup you need to configurate application.
+   First you need to configure database table.
+
+    App configuration file is located inside: 
+
+    inc/conf.inc.php ( It is recommanded to copy this file )
+
+** Steps to create simple login app :
+
+    1) This application will create database table automat. for itself.
+       Add name of table in this line of code:
+       
+       $_conf['db_table_name'] = "loginer";
+
+    2) Add fields you want to have in database and in signup form.
+
+        $_conf['db_table_data'] = [
+
+            "user_name"     => [ "varchar", 255 ],
+            "user_surname"  => [ "varchar", 255 ],
+            "user_email"    => [ "varchar", 255 ],
+            "user_password" => [ "varchar", 255 ]
+
+        ];
+
+        This is example where you have 4 fields inside signup form.
+
+    3) On of these fields must be unique.. Best solution in this example is
+       to make email a unique for every user...
+       
+        $_conf['db_table_unique'] = "user_email";
+
+        *NOTE: This must be part of array above... Please do not leave this empty
+        or add more then one value...
+
+    4) Some type of data like password must be hashed because of securitiy issues.. To crypt this 
+       fields there is array with sensitive data...
+
+       $_conf['db_table_sens'] =  [ "user_password" ];
+
+       In this array you can add more then one element but one must be leave unhashed... 
+
+       *NOTE: Its recommanded to add only password in this array..
+
+    5) Signup form have few input fields, user can forget to add one or more.. If you want to protect app 
+       from this issues keep this field disabled..
+        
+       $_conf['db_table_allow_empty'] = false;
+
+       This will return error if user have any input field empty... 
+
+    6) Password Algorithm is place where you can decide which algorithm you will use to crypt 
+       password data.. 
+        
+       $_conf['password_algorithm'] = PASSWORD_BCRYPT;
+
+       *NOTE: All available algorithms are written in comment above.. Try to use only 
+       algorithms we have tested..
+
+    7) Password salt will kepp your hashed data more secured... You can put any value you want..
+
+       $_conf['password_salt'] = "vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a";
+
+    8) After we prepared everything for signup we need to provide login form. This is place where website 
+       users do log in our app... In this app you need only to enter fields from array above.. In my example 
+       these fields are  user email and user password...
+
+        $_conf['login_fields'] = [
+            "user_email",
+            "user_password"
+        ];
+
+    9) At the end add page where user will come after login to page.. Login and Signup Page will not be allowed 
+       at the time user is logged in.. After User logout it will become useable again...
+
+        $_conf['login_land_page'] = 'website.php';
+
+    10) My advice is to keep this folder separeted from your other files so you can create login URL simple by redirecting user 
+        to loginer folder...
+
+RUN APPLICATION
+===============
+
+    Before you start using this script run it using url... In my example this app is located inside folder "login"
+
+    myapp/
+
+        css/
+        img/
+        js/
+        login/ => this is loginer folder just renamed to login 
+        inc/
+        index.php 
+
+
+    In this case i start app just running
+
+    http://localhost/login/
+
+    This will call login/index.php and configure application.. If everything is finished you wll see 
+    welcome message.. After you confirm using button you will be redirecting to login page... 
+
+
+    I hope you will enjoy in app....
+    If you need help about this app contact me:
+
+    denis.ristic@live.co.uk
+
+        
