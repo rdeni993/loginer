@@ -141,6 +141,33 @@ RUN APPLICATION
     I hope you will enjoy in app....
     If you need help about this app contact me:
 
+
     denis.ristic@live.co.uk
 
+USE
+===============
+
+**  After you setup application and start using it you need to check is user logged in.. To do that you can 
+    simply call static method:
+
+    Loginer::logged_in(); // return true/false
+
+    *NOTE:
+
+    Before you start using this method please be sure you have start your session using
+    PHP session_start();
+
+YOUR CODE 
+=================
+
+**  If you need more code to add to your login script you can do it. Actually there is class where 
+    you can access to every important segmet of this application.
+
+    That Class I call log_callback and is located in :
+
+    inc/log_callback.php 
+
+    You need to edit last method named : callback()
+
+    So all code you want to have after user signup you can do it using this method!!!
         

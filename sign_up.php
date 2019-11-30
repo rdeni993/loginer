@@ -26,6 +26,9 @@
             // Unset Session
             $_SESSION['signup_err'] = false;
 
+            // Call Callback
+            $loginer->callback();
+
             // Go to login
             header("Location: login.php");
         }

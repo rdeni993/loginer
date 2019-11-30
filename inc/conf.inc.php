@@ -10,7 +10,7 @@
 $_conf = array();
 
 // Table Name
-$_conf['db_table_name'] = "";
+$_conf['db_table_name'] = '';
 
 // Database Table Data
 // Set Up this table data
@@ -23,15 +23,14 @@ $_conf['db_table_data'] = [];
 
 // One of your field must me 
 // unique ( username, nickname, email, .... )
-$_conf['db_table_unique'] = "";
+$_conf['db_table_unique'] = '';
 
 // Choose which data to hash
 // This data will be stored as
 // crypted string... 
 // Add only data u need to 
 // be crypted...
-$_conf['db_table_sens'] = [
-];
+$_conf['db_table_sens'] = [];
 
 // ALLOW EMPTY FIELDS
 // Its important to have 
@@ -55,7 +54,7 @@ $_conf['password_algorithm'] = PASSWORD_BCRYPT;
 // Salt. This will keep your data maximum safe.. 
 // NOTICE: This cannot be change after you start
 // application once..
-$_conf['password_salt'] = "vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a";
+$_conf['password_salt'] = 'vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a';
 
 // LOGIN DETAILS
 // This will create combo box
@@ -64,9 +63,7 @@ $_conf['password_salt'] = "vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a"
 // system... 
 // NOTICE: Fields must be same as fields inside
 // above array..... 
-$_conf['login_fields'] = [
-
-];
+$_conf['login_fields'] = [];
 
 // REDIRECT PAGE
 // After we finish loading select page where 

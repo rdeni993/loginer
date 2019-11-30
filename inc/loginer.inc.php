@@ -1,5 +1,7 @@
 <?php 
 
+require_once("log_callback.inc.php");
+
 /**
  * 
  * Loginer v1.0 
@@ -661,6 +663,20 @@ class Loginer
     public function configuration_errors()
     {
         return $this->_conf_errors;
+    }
+
+    /**
+     * 
+     * Create Callback
+     * 
+     */
+    public function callback()
+    {
+        // Create New Instance
+        $callback = new Log_Callback($this);
+
+        // Call Callback
+        $callback->callback();
     }
 
 }

@@ -8,16 +8,16 @@
  */
 
 // Database HOST
-$db_host = "localhost"; // default: localhost
+$db_host = ""; // default: localhost
 
 // Database USER
-$db_user = "rdeni";
+$db_user = "";
 
 // Database PASSWORD
-$db_pass = "rdeni993";
+$db_pass = "";
 
 // Database NAME
-$db_name = "loginer";
+$db_name = "";
 
 /**
  * 
