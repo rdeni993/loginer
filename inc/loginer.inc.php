@@ -458,7 +458,7 @@ class Loginer
            if( in_array( $temp_k, $this->_config['login_fields'] ) )
            {
                 // ADD to real array
-                $real_array[$temp_k] = $p; 
+                $real_array[$temp_k] = htmlentities( $p, ENT_QUOTES, 'UTF-8' ); 
 
                 // Separate
                 if( in_array( $temp_k, $this->_config['db_table_sens'] ) )
